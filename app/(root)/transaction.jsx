@@ -54,6 +54,18 @@ const Transaction = () => {
           setIsIncome(false)
       }
   }
+
+  const amountBasedOnIsIncome = (amount) =>
+  {
+    if (isIncome)
+    {
+      return Math.abs(amount)
+    }
+    else
+    {
+      return -Math.abs(amount)
+    }
+  }
   
 
   const handleUpdate = async () =>{
@@ -95,7 +107,7 @@ const Transaction = () => {
             Id: item.id,
             "User Id": item.user_id,
             Title: title,
-            Amount: parseFloat(amount),
+            Amount: amountBasedOnIsIncome(parseFloat(amount)),
             Category: selectedCategory
           }
           )
